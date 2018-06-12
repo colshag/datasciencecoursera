@@ -1,5 +1,3 @@
-library(data.table)
-
 pollutantmean <- function(directory, pollutant, id = 1:332){
         ## 'directory' is a character vector of length 1 indicating
         ## the location of the CSV files
@@ -15,19 +13,9 @@ pollutantmean <- function(directory, pollutant, id = 1:332){
         ## in the 'id' vector (ignoring NA values)
         ## NOTE: Do not round the result:
         
-        # create a vector of just the files we want to read
-        myFiles = list.files(directory)
-        newFiles = c() # empty vector
-        j <- 1
-        for (i in id){
-                newFiles[j] <- myFiles[i]
-                j <- j + 1
-        }
-        
-        # read this vector into a data table
-        setwd(directory)
-        DT = do.call(rbind, lapply(newFiles, fread))
-        setwd("..")
+        # get data table of just the files specified
+        source('as1.R')
+        DT <- getMyDT(directory, id)
         
         # return the mean
         return(mean( DT[,get(pollutant)], na.rm = TRUE))
