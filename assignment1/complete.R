@@ -23,7 +23,8 @@ complete <- function(directory, id = 1:332) {
         # make new Data Frame just counting rows per ID
         DF <- data.frame("id" = integer(), "nobs" = integer())
         for (i in id){
-                newRow <- data.frame(id = i, nobs = nrow(DT[id == i]) )
+                numRows <- nrow(DT[ID == i])
+                newRow <- data.frame(id = i, nobs = numRows )
                 DF <- rbind(DF, newRow)
         }
         return(DF)
