@@ -13,7 +13,6 @@ corr <- function(directory, threshold = 0) {
         ## NOTE: Do not round the result.
         
         source("as1.R")
-        ##myFiles <- list.files(directory)
         myVec = c()
         myOutput = c()
         
